@@ -6,7 +6,6 @@ let score;
 startGuessMyNumberGame();
 function startGuessMyNumberGame() {
   random = Math.trunc(Math.random() * 20 + 1);
-  console.log(random);
   document.querySelector('.score').textContent = 20;
   score = 20;
   document.querySelector('.message').textContent = 'Start Guessing ...';
