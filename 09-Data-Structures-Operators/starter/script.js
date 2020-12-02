@@ -68,7 +68,7 @@ const restaurant = {
 // let [starter, Main, Main1] = restaurant.order(2, 1, 2);
 // console.log(starter, Main, Main1);
 
-// //Nester destructing
+//Nester destructing
 // let nested = [1, 2, 3, [4, 5]];
 // let [one, , three, [four, five]] = nested;
 // console.log(one, three, four, five);
@@ -112,32 +112,172 @@ const restaurant = {
 ///////////////////////////////////////
 // The Spread Operator (...)
 
-const arr = [1, 2, 3];
-const newarr = [...arr, 4, 5];
-console.log(...newarr);
+// const arr = [1, 2, 3];
+// const newarr = [...arr, 4, 5];
+// console.log(...newarr);
 
 // Copy array
-const arr1 = [12, 2, 3, 4, 5];
-const arr2 = [...arr1];
-arr1[0] = 1;
-console.log(arr1, arr2);
+// const arr1 = [12, 2, 3, 4, 5];
+// const arr2 = [...arr1];
+// arr1[0] = 1;
+// console.log(arr1, arr2);
 
 //join 2 arrays
-const arr3 = [...arr1, ...arr2];
-console.log(arr3);
+// const arr3 = [...arr1, ...arr2];
+// console.log(arr3);
 
 // Iterables: arrays, strings, maps, sets. NOT objects but after es2018 we can use spread operator in objects also
-const str = 'tijovanth';
-console.log(...str);
+// const str = 'tijovanth';
+// console.log(...str);
 
 // using spread operator for function arguments
-const ingrediants = ['pepper', 'macroni', 'salt'];
-restaurant.orderPasta(...ingrediants);
+// const ingrediants = ['pepper', 'macroni', 'salt'];
+// restaurant.orderPasta(...ingrediants);
 
 //using objects
-const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
-console.log(newRestaurant);
-const restaurantCopy = { ...restaurant };
-restaurantCopy.name = 'Ristorante Roma';
-console.log(restaurantCopy.name);
-console.log(restaurant.name);
+// const newRestaurant = { foundedIn: 1998, ...restaurant, founder: 'Guiseppe' };
+// console.log(newRestaurant);
+// const restaurantCopy = { ...restaurant };
+// restaurantCopy.name = 'Ristorante Roma';
+// console.log(restaurantCopy.name);
+// console.log(restaurant.name);
+
+//SPREAD because it is on right. REST because it is on left.
+// const [a,b,...others] = [1,2,3,4,5];
+// console.log(a,b,others);
+
+// const [pizza,,Risotto,...otherFoods] = [...restaurant.mainMenu,...restaurant.starterMenu];
+// console.log(pizza,Risotto,otherFoods);
+
+//Using in Objects
+// const {fri,...restofthedays} = restaurant.openingHours;
+// console.log(restofthedays);
+
+//Using in Functions
+function add(...numbers){
+  let sum = 0;
+  for(let i = 0; i < numbers.length; i++)
+    sum += numbers[i];
+  console.log(sum);
+} 
+
+// add(1,2);
+// add(1,2,3);
+// const x = [1,2,1,2];
+// add(...x);
+
+//Short Circuiting (&& and ||)
+// console.log('---- OR ----');
+// // Use ANY data type, return ANY data type, short-circuiting
+// console.log(3 || 'Jonas');
+// console.log('' || 'Jonas');
+// console.log(true || 0);
+// console.log(undefined || null);
+
+// console.log(undefined || 0 || '' || 'Hello' || 23 || null);
+
+// restaurant.numGuests = 0;
+// const guests1 = restaurant.numGuests ? restaurant.numGuests : 10;
+// console.log(guests1);
+
+// const guests2 = restaurant.numGuests || 10;
+// console.log(guests2);
+
+// console.log('---- AND ----');
+// console.log(0 && 'Jonas');
+// console.log(7 && 'Jonas');
+
+// console.log('Hello' && 23 && null && 'jonas');
+
+// // Practical example
+// if (restaurant.orderPizza) {
+//   restaurant.orderPizza('mushrooms', 'spinach');
+// }
+
+// restaurant.orderPizza && restaurant.orderPizza('mushrooms', 'spinach');
+
+// for of loop
+const menu = [...restaurant.mainMenu,...restaurant.starterMenu];
+// for(let item of menu)
+//  console.log(item);
+
+//  for(let item of menu.entries())
+//   console.log(item);
+
+ // console.log(menu.entries());
+
+// for(let [index,item] of menu.entries())
+//    console.log(index,item);
+
+//Optional Chaining
+//Objects
+// console.log(restaurant?.openingHours?.mon?.open);
+// console.log(restaurant?.categories?.[0]);
+
+// const days = ['mon', 'tue', 'wed', 'thu', 'fri', 'sat', 'sun'];
+
+// for(const day of days){
+//   console.log(restaurant?.openingHours[day]?.open ?? `We closed on ${day}`);
+// }
+
+// //Methods
+// restaurant?.orderPasta?.('pepper','salt','chillypowder');
+// console.log(restaurant?.tijo?.() ?? 'Method does not exist');
+
+// //Arrays
+// const users = [{name:'tijovanth',email:'tijo@gmail.com'}];
+// console.log(users?.[0]?.name);
+
+///////////////////////////////////////
+// Looping Objects: Object Keys, Values, and Entries
+
+//Object.keys will return only keys as a array
+// const [...variables] = Object.keys(restaurant.openingHours);
+// console.log(...variables);
+
+//Object.values will return only values as Array
+// console.log(...Object.values(restaurant.openingHours));
+
+//Object.entries will return both as an array. first index is key and second index is value
+// console.log(...Object.entries(restaurant.openingHours));
+
+//SETS
+//Set will have one only unique values:
+// const orderSet = new Set([1,true,null,undefined,"tijo","tijo"]);
+// console.log(orderSet);
+// console.log(orderSet.size);
+// console.log(orderSet.has("tijo"),orderSet.has("vath"));
+// console.log(orderSet.add("vanth"));
+// console.log(orderSet.delete("vanth"))
+// //console.log(orderSet.clear());
+
+// const friends = [...new Set(["tijovanth","kama","tijovanth"])];
+// console.log(friends);
+
+///////////////////////////////////////
+// Maps: Fundamentals
+// In map if key is same value and same type then it will override to new value
+// If we want to set array, object, function and set as key in map make sure same object should be set as key
+// At the time of retrivement key should be same data type
+// In Map this keyword will not refer to that map itself instead it refers to global in nonstrict mode
+const rest = new Map();
+rest.set("name","tijovanth")
+rest.set(21,"age");
+rest.set(true,"he is a man")
+rest.set(false,"he is not she");
+
+// const newMap = new Map();
+// newMap.set(21,"age")
+// .set(21,22);
+// console.log(newMap);
+
+// console.log(rest.get(21));
+
+// const map = new Map();
+// map.set("name","tijo")
+// map.set('a', function() { console.log('Hello') });
+// let fuc = function(){};
+// map.set(fuc, 'Hi');
+ 
+// map.get('a')();
+// console.log(map.get(fuc));
