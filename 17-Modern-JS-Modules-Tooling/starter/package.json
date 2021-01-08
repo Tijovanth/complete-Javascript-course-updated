@@ -1,0 +1,20 @@
+{
+  "name": "starter",
+  "version": "1.0.0",
+  "description": "\"Tijovanth test\"",
+  "main": "clean.js",
+  "scripts": {
+    "start": "parcel index.html",
+    "build": "parcel build index.html"
+  },
+  "author": "\"Tijovanth\"",
+  "license": "ISC",
+  "dependencies": {
+    "core-js": "^3.8.2",
+    "leaflet": "^1.7.1",
+    "lodash-es": "^4.17.20"
+  },
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  }
+}
